@@ -1,0 +1,235 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(45deg, #fdf3f4, #d3f8ec),linear-gradient(142deg, transparent, rgb(221, 16, 16)),linear-gradient(108deg, rgb(0, 255, 136), transparent);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+#body1 {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#body2 {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#body3 {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#body4 {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+section {
+    width: 100%;
+    height: 95%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    width: 100%;
+    height: 5%;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+footer {
+    width: 100%;
+    height: 5%;
+    background-color: grey;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+#gml {
+    background-color: transparent;
+}
+
+#site-link {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+}
+
+#site-link2 {
+    color: #6001D2;
+    text-decoration: none;
+}
+
+.olfm3 {
+    height: 65%;
+    width: 32%;
+    /* border: 1px solid black; */
+    /* margin: auto; */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* padding: 2rem; */
+}
+
+form {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formSection {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 16rem;
+}
+
+.signInHeader {
+    width: 100%;
+    height: 15%;
+    /* border: 1px solid black; */
+}
+
+.signInBox {
+    height: 80%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imageBox {
+    width: 100%;
+    height: 15%;
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.SignInsection {
+    width: 100%;
+    /* border: 1px solid black; */
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.passBox {
+    width: 100%;
+    /* border: 1px solid black; */
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+input {
+    /* /* height: 100%; */
+    width: 100%;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+input[type=password] {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #0067B8;
+    display: flex;
+}
+
+#emailValue2 {
+    border: none;
+}
+
+input[type=checkbox] {
+    height: 1rem;
+    width: 1rem;
+}
+
+.subBtn {
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+button {
+    height: 2.5rem;
+    width: 6.5rem;
+    background-color: #0067B8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: white;
+}
+
+.stay {
+    width: 100%;
+    height: 15%;
+    /* border: 1px solid black; */
+    /* padding: 1rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8rem;
+}
+
+
+.signInOptions {
+    height: 14%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
+    display: flex;
+    padding-left: 3rem;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}

